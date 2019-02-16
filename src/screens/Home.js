@@ -1,27 +1,85 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { connect } from 'react-redux';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import { Button } from '@ant-design/react-native';
 import Navigation from '../utils/Navigation';
+import { DriverStatus } from '../components/DriverStatus';
+import { ListItem } from '../components/ListItem';
+const _ = require('lodash');
 
 class Home extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Home Screen</Text>
-        <Button
-          title="Go to About"
-          onPress={() => Navigation.navigate('About')}
-        />
-      </View>
-    );
-  }
+	static navigationOptions = {
+		title: 'Meter Mele',
+		headerStyle: {
+			backgroundColor: '#f39c12',
+		},
+		headerTintColor: '#fff',
+		headerTitleStyle: {
+			fontWeight: 'bold',
+		},
+	};
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			visible: false
+		};
+		this.bidAccept = (bid) => {
+			console.log(bid);
+			Alert.alert(
+				'Bid Confirmation',
+				'Accept this bid with meter mele ' + bid.metermele.fare + 'Rs. ?',
+				[
+					{
+						text: 'Cancel',
+						onPress: () => console.log('Cancel Pressed'),
+						style: 'cancel',
+					},
+					{
+						text: 'OK', onPress: () => {
+							console.log('OK Pressed');
+							this.props.dispatch({
+								type: "BID_SELECT",
+								payload: {
+									bid: bid
+								}
+							});
+							Navigation.navigate('AcceptedRide');
+						}
+					}
+				],
+				{ cancelable: true },
+			);
+		};
+	}
+
+
+	render() {
+		const bids = this.props.test.get('bids');
+		return (
+			<View style={styles.container}>
+				<DriverStatus></DriverStatus>
+				<ScrollView style={styles.scroller}>
+					{
+						_.map(bids, bid => <TouchableOpacity onPress={() => this.bidAccept(bid)}><ListItem bid={bid} /></TouchableOpacity>)
+					}
+				</ScrollView>
+			</View>
+		);
+	}
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
+	container: {
+		padding: 20,
+		flex: 1,
+		backgroundColor: '#eee'
+	},
+	scroller: {
+		marginTop: 20,
+		flex: 1,
+		backgroundColor: '#eee'
+	}
 });
 
-export default Home;
+export default connect(({ test }) => ({ test }))(Home);

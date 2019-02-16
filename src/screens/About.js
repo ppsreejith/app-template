@@ -10,11 +10,11 @@ const uri = 'https://78.media.tumblr.com/839109db9a08ef9b0c0492c8533a84f4/tumblr
 
 class About extends React.Component {
   render() {
-    const name = this.props.test.get('name');
+    const name = this.props.test.get('selectedBid');
     return (
       <View style={styles.container}>
         <Text>About Page</Text>
-        <Text>Name is { name }</Text>
+        <Text>Name is { name.metermele.fare }</Text>
         <Interactable.View
           horizontalOnly
           snapPoints={[{ x: 0 }, { x: -200 }]}

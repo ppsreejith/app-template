@@ -28,7 +28,7 @@ class Home extends React.Component {
 			console.log(bid);
 			Alert.alert(
 				'Bid Confirmation',
-				'Accept this bid with meter mele ' + bid.metermele.fare + 'Rs. ?',
+				'Accept this bid with meter mele ' + bid.metermele.fare.toFixed(0) + 'Rs. ?',
 				[
 					{
 						text: 'Cancel',
@@ -56,12 +56,19 @@ class Home extends React.Component {
 
 	render() {
 		const bids = this.props.test.get('bids');
+		const minimumMeterMele = this.props.test.get('minimumMeterMele')
+		const filteredBids = bids.filter(function(item){
+								return item.metermele.fare.toFixed(0)>=minimumMeterMele;         
+							}).sort(function(a,b){ 
+								var x = a.metermele.fare > b.metermele.fare? -1:1; 
+								return x; 
+							})
 		return (
 			<View style={styles.container}>
 				<DriverStatus></DriverStatus>
 				<ScrollView style={styles.scroller}>
 					{
-						_.map(bids, bid => <TouchableOpacity onPress={() => this.bidAccept(bid)}><ListItem bid={bid} /></TouchableOpacity>)
+						_.map(filteredBids, bid => <TouchableOpacity onPress={() => this.bidAccept(bid)}><ListItem bid={bid} /></TouchableOpacity>)
 					}
 				</ScrollView>
 			</View>

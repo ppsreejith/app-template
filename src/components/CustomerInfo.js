@@ -6,27 +6,27 @@ import { Button } from '@ant-design/react-native';
 export class CustomerInfo extends React.Component {
     render() {
 
-        const acceptedBid = this.props.acceptedBid;
+        const bid = this.props.acceptedBid;
         return (
             <View style={styles.container}>
                 <View style={styles.rowDivider}>
                     <View style={[styles.colDivider,{borderBottomColor:"#eee",borderBottomWidth: 1}]}>
                         <View style={{flex:2, justifyContent: 'space-between', alignItems: 'center'}}>
                             <Image source={require('../../assets/batman.jpg')} style={{width: 100, height: 100, borderRadius: 100/2}} />
-                            <Text>{acceptedBid.user.name}</Text>
+                            <Text>{bid.user.name}</Text>
                         </View>
                         <View  style={{flex:3, justifyContent: 'space-between', padding: 10}}>
-                            <Text><Text style={{fontWeight:"800"}}>From: </Text><Text>{acceptedBid.pickup.description}</Text></Text>
-                            <Text><Text  style={{fontWeight:"800"}}>To: </Text><Text>{acceptedBid.pickup.description}</Text></Text>
+                            <Text><Text style={{fontWeight:"800"}}>From: </Text><Text>{bid.pickup.description}</Text></Text>
+                            <Text><Text  style={{fontWeight:"800"}}>To: </Text><Text>{bid.drop.description}</Text></Text>
                         </View>
                     </View>
                     <View style={styles.colDivider}>
                         <View style={styles.rowDivider}>
-                            <Text style={styles.title}>{acceptedBid.metermele.fare}</Text>
+                            <Text style={styles.title}>₹{Math.max(bid.travel.distance.value*13/1000,26).toFixed(0)}</Text>
                             <Text style={styles.backgroundText}>Total Fare</Text>
                         </View>
                         <View style={styles.rowDivider}>
-                            <Text style={styles.title}>{acceptedBid.metermele.fare}</Text>
+                            <Text style={styles.title}>₹{bid.metermele.fare.toFixed(0)}</Text>
                             <Text style={styles.backgroundText}>Meter Mele</Text>
                         </View>
                     

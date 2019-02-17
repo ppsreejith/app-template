@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {end_bid} from '../actions/metermele';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { DriverStatus } from '../components/DriverStatus';
 import {CustomerInfo} from '../components/CustomerInfo';
@@ -19,8 +20,9 @@ class RideInProgress extends React.Component {
       };
     constructor(props) {
 		super(props);
-		this.end = () => {
-            //Do something
+		this.end = (bid) => {
+                  //Do something
+                  end_bid(bid);
             Navigation.navigate('Home');
         }
     }
@@ -31,7 +33,7 @@ class RideInProgress extends React.Component {
 			<View style={styles.container}>
 				<DriverStatus></DriverStatus>
                 <CustomerInfo acceptedBid={acceptedBid}></CustomerInfo>
-                <Button style={styles.butt} onPress={this.end}><Text style={styles.buttText}>End Ride</Text></Button>
+                <Button style={styles.butt} onPress={() => this.end(acceptedBid)}><Text style={styles.buttText}>End Ride</Text></Button>
 			</View>
 		);
     }

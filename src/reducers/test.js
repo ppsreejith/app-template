@@ -4,7 +4,7 @@ import { createReducer } from '../utils';
 const initialState = Immutable.Map({
   name: 'Hello World',
   earnings: 600,
-  minimumMeterMele: 20,
+  minimumMeterMele: 0,
   bids: [],
   selectedBid : {}
 });

@@ -2,7 +2,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import queryString from 'query-string';
 
-export const SERVER = 'http://localhost:3000';
+export const SERVER = 'http://ppsreejith.net:3000';
 
 const decideRequest = (prom, resolve, reject) =>
   prom

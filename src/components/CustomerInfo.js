@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { Button } from '@ant-design/react-native';
+import _ from 'lodash';
 
 export class CustomerInfo extends React.Component {
     render() {
@@ -16,13 +17,13 @@ export class CustomerInfo extends React.Component {
                             <Text>{bid.user.name}</Text>
                         </View>
                         <View  style={{flex:3, justifyContent: 'space-between', padding: 10}}>
-                            <Text><Text style={{fontWeight:"800"}}>From: </Text><Text>{bid.pickup.description}</Text></Text>
-                            <Text><Text  style={{fontWeight:"800"}}>To: </Text><Text>{bid.drop.description}</Text></Text>
+                          <Text><Text style={{fontWeight:"800"}}>From: </Text><Text>{bid.pickup.description || "GoJek Office"}</Text></Text>
+                          <Text><Text  style={{fontWeight:"800"}}>To: </Text><Text>{bid.drop.description || "Indiranagar metro station"}</Text></Text>
                         </View>
                     </View>
                     <View style={styles.colDivider}>
                         <View style={styles.rowDivider}>
-                            <Text style={styles.title}>₹{Math.max(bid.travel.distance.value*13/1000,26).toFixed(0)}</Text>
+                            <Text style={styles.title}>₹{Math.max(_.get(bid, 'travel.distance.value', 1200)*13/1000, 26).toFixed(0)}</Text>
                             <Text style={styles.backgroundText}>Total Fare</Text>
                         </View>
                         <View style={styles.rowDivider}>

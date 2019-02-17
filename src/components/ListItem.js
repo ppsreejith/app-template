@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Text, View, Image} from 'react-native';
 import { Button} from '@ant-design/react-native';
+import _ from 'lodash';
 
 export class ListItem extends React.Component {
     render() {
@@ -14,25 +15,25 @@ export class ListItem extends React.Component {
                     <View style={styles.rowDividerLeft}>
                         <View style={styles.colDivider}>
                             <Text style={styles.fromto}>From</Text>
-                            <Text numberOfLines={1} style={styles.title}>{bid.pickup.description}</Text>
+                            <Text numberOfLines={1} style={styles.title}>{bid.pickup.description || "GoJek Office"}</Text>
                         </View>
                         <View style={styles.colDivider}>
                             <Text style={styles.fromto}>To</Text>
-                            <Text numberOfLines={1} style={styles.title}>{bid.drop.description}</Text>
+                            <Text numberOfLines={1} style={styles.title}>{bid.drop.description || "Indiranagar metro station"}</Text>
                         </View>
                         <View style={styles.colDividerSpace}>
                             <Text>
                                 <Text style={styles.backgroundText}>Distance : </Text>
-                                <Text style={styles.backgroundText}>{bid.travel.distance.text}</Text>
+                                <Text style={styles.backgroundText}>{_.get(bid, 'travel.distance.text', '1.2 km')}</Text>
                             </Text>
                             <Text>
                                 <Text style={styles.backgroundText}>Est. Time : </Text>
-                                <Text style={styles.backgroundText}>{bid.travel.duration.text}</Text>
+                                <Text style={styles.backgroundText}>{_.get(bid, 'travel.duration.text', '5 min')}</Text>
                             </Text>
                         </View>
                     </View>
                     <View style={styles.rowDividerRight}>
-                        <Text style={styles.fatTitle}>₹{Math.max(bid.travel.distance.value*13/1000,26).toFixed(0)}</Text>
+                      <Text style={styles.fatTitle}>₹{Math.max(_.get(bid, 'travel.distance.value', 1.2)*13/1000,26).toFixed(0)}</Text>
                         <Text>+ meter mele</Text>
                         <Text style={styles.mm}>₹{bid.metermele.fare.toFixed(0)}</Text>
                     </View>

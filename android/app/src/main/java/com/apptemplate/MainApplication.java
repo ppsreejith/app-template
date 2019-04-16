@@ -3,6 +3,8 @@ package com.apptemplate;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import co.apptailor.googlesignin.RNGoogleSigninPackage;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.github.xinthink.rnmk.ReactMaterialKitPackage;
 import com.wix.interactable.Interactable;
@@ -26,6 +28,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNGoogleSigninPackage(),
+            new FBSDKPackage(),
             new RNGestureHandlerPackage(),
           new ReactMaterialKitPackage(),
           new Interactable()

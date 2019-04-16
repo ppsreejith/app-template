@@ -1,7 +1,26 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
-  },
-  "name": "apptemplate",
-  "displayName": "app-template"
+    "name": "Prachaar",
+    "slug": "prachaar",
+    "privacy": "public",
+    "sdkVersion": "32.0.0",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
 }

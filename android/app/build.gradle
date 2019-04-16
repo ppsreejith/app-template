@@ -148,6 +148,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-gesture-handler')
     compile project(':react-native-material-kit')
     compile project(':react-native-interactable')
     compile fileTree(dir: "libs", include: ["*.jar"])

@@ -22,8 +22,10 @@ function pollServer() {
         to_lng,
         to_address,
         metermele,
-        created_at
+        created_at,
+        otp
       }) => ({
+        otp,
         user: {
           name: 'Placeholder'
         },

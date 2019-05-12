@@ -2,16 +2,15 @@ import axios from 'axios';
 import _ from 'lodash';
 import queryString from 'query-string';
 
-export const SERVER = 'http://ppsreejith.net:3000';
+export const SERVER = 'http://localhost:9999';
 
 const decideRequest = (prom, resolve, reject) =>
   prom
     .then(res =>
-      (_.get(res, 'data.success')
-        ? resolve(_.get(res, 'data.data'))
-        : reject(_.get(res, 'data.message', res))))
-    .catch(err =>
-      reject(_.get(err, 'response.data.message', err)));
+      (_.get(res, 'status') === 200
+        ? resolve(_.get(res, 'data', {}))
+        : reject(_.get(res, 'data', res))))
+    .catch(err => reject(err));
 
 const addJsonParams = (url, data) => {
   if (_.isEmpty(data)) {

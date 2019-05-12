@@ -38,15 +38,17 @@ class Home extends React.Component {
 	  },
 	  {
 	    text: 'OK', onPress: () => {
-	      console.log('OK Pressed');
-	      this.props.dispatch({
-		type: "BID_SELECT",
-		payload: {
-		  bid: bid
-		}
-	      });
-	      Navigation.navigate('AcceptedRide');
-              accept_bid(bid);
+              accept_bid(bid).then(res => {
+                this.props.dispatch({
+		  type: "BID_SELECT",
+		  payload: {
+		    bid: bid
+		  }
+	        });
+	        Navigation.navigate('AcceptedRide');
+              }).catch(err => {
+                Alert.alert('Sorry bid failed. Please try again');
+              });
 	    }
 	  }
 	],

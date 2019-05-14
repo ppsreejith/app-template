@@ -2,7 +2,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import queryString from 'query-string';
 
-export const SERVER = 'http://192.168.29.78:9999';
+export const SERVER = 'http://192.168.43.78:9999';
 
 const decideRequest = (prom, resolve, reject) =>
   prom

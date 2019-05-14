@@ -10,8 +10,8 @@ function pollServer() {
     setTimeout(pollServer, Math.max(1000 - (endTime - startTime), 0));
   };
   getActiveBids({
-    fromLat: 1,
-    fromLng: 2
+    fromLat: 0,
+    fromLng: 0
   }).then((data) => {
     const bids = _.chain(data)
       .map(({

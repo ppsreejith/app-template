@@ -2,7 +2,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import queryString from 'query-string';
 
-export const SERVER = 'http://mock-server.ppsreejith.net';
+export const SERVER = 'http://ppsreejith.net:9999';
 
 const decideRequest = (prom, resolve, reject) =>
   prom
